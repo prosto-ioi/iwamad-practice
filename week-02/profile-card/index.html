@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Профиль-карточка Ильи — Practice 1+2, Week 2, IWaMAD." />
+    <title>Илья — Profile Card</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Step 2: Tailwind via CDN — no build step needed for today -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+
+    <!-- padding + text-align now come from Tailwind utilities (was .site-header/.site-footer in style.css) -->
+    <header class="text-center p-4 text-sm text-slate-400">
+      <p>Week 2 · Profile Card practice</p>
+    </header>
+
+    <main class="page-main">
+      <article class="card" id="profile-card">
+
+        <div class="card__top">
+          <!-- avatar sizing/rounding now Tailwind utilities (was .avatar width/height/border-radius in style.css) -->
+          <img
+            src="photo.jfif" 
+            alt="My photo"
+            class="w-14 h-14 rounded-full object-cover"
+          />
+          <div class="card__heading">
+            <h1 class="card__name">Илья</h1>
+            <p class="card__role">Aspiring Web Developer</p>
+          </div>
+        </div>
+
+        <p class="card__bio">
+          Учусь на 3 курсе в КБТУ и прохожу этот курс, чтобы получить прочную базу в
+          HTML, CSS и JavaScript. Люблю ходить в горы — это лучший способ переключиться
+          после кода. Собираю портфолио проектов, которым буду гордиться к концу семестра.
+        </p>
+
+        <ul class="card__links">
+          <li>
+            <a
+              class="inline-block px-4 py-2 rounded-full border border-[var(--color-border)] hover:border-[var(--color-accent)] text-sm no-underline text-[var(--color-text)] transition-colors"
+              href="mailto:uujtop228@gmail.com"
+            >Email</a>
+          </li>
+          <li>
+            <a
+              class="inline-block px-4 py-2 rounded-full border border-[var(--color-border)] hover:border-[var(--color-accent)] text-sm no-underline text-[var(--color-text)] transition-colors"
+              href="https://github.com/prosto-ioi"
+              target="_blank"
+              rel="noopener noreferrer"
+            >GitHub</a>
+          </li>
+        </ul>
+
+        <!-- Step 1: like button — toggled in main.js via querySelector + addEventListener -->
+        <button id="like-btn" class="like-btn" type="button" aria-pressed="false">
+          <span aria-hidden="true">♡</span> Like
+        </button>
+
+      </article>
+    </main>
+
+    <footer class="text-center p-4 text-sm text-slate-400">
+      <p>&copy; 2026 Илья</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
