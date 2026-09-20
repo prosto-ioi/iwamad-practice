@@ -1,0 +1,152 @@
+/*
+
+Design tokens — one place to tweak color/type/spacing
+
+*/
+:root {
+  --color-bg: #10161d;
+  --color-surface: #1c2531;
+  --color-border: #2e3946;
+  --color-text: #e7ebef;
+  --color-text-muted: #93a1b0;
+  --color-accent: #6fae8c;      /* alpine sage — default accent */
+  --radius: 16px;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* Box-sizing reset so padding/border never blow past the width we set */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.site-header,
+.site-footer {
+  text-align: center;
+  padding: 1rem;               /* BOX MODEL: padding example #1 — breathing room around header/footer text */
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+/*
+
+Layout: Flexbox centers the card on the page at any width
+
+*/
+.page-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.5rem;              /* BOX MODEL: padding example #2 — keeps card off the screen edges on mobile */
+  min-height: 60vh;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;             /* caps card width so it stays readable at 1200px */
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);  /* BOX MODEL: border example — separates the card from the page background */
+  border-radius: var(--radius);
+  padding: 1.75rem;             /* BOX MODEL: padding example #3 — inner spacing between card edge and its content */
+  margin: 0 auto;               /* BOX MODEL: margin example — falls back to centering the card if a parent isn't flex */
+}
+
+/*
+
+   Layout: CSS Grid for the avatar + name/title row
+ 
+*/
+.card__top {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;       /* BOX MODEL: margin example #2 — space between the header row and the bio text */
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.card__name {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.card__role {
+  margin: 0.15rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.card__bio {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+/*
+
+   Layout: Flexbox for the row of links — wraps on narrow screens
+
+*/
+.card__links {
+  display: flex;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.card__links a {
+  display: inline-block;
+  padding: 0.5rem 1rem;         /* BOX MODEL: padding example #4 — clickable area around each link's text */
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: border-color 0.15s ease;
+}
+
+.card__links a:hover,
+.card__links a:focus-visible {
+  border-color: var(--color-accent);
+}
+
+/*
+
+   Responsive: stack the header row on mobile (~375px)
+   Above 480px the grid row from .card__top stays side-by-side,
+   which is what we want at desktop widths (~1200px) too.
+
+*/
+@media (max-width: 480px) {
+  .card {
+    padding: 1.25rem;
+  }
+  .card__top {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+}
