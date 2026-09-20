@@ -1,0 +1,146 @@
+/*
+
+   Design tokens
+
+ */
+:root {
+  --color-bg: #10161d;
+  --color-surface: #1c2531;
+  --color-border: #2e3946;
+  --color-text: #e7ebef;
+  --color-text-muted: #93a1b0;
+  --color-accent: #6fae8c;        /* alpine sage — default accent */
+  --color-accent-liked: #f2b705;  /* sunrise gold — shown once "liked" */
+  --radius: 16px;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+/*
+
+   Layout: Flexbox centers the card on the page at any width
+
+*/
+.page-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.5rem;               /* BOX MODEL: padding example #1 — keeps card off the screen edges on mobile */
+  min-height: 60vh;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;              /* caps card width so it stays readable at 1200px */
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);  /* BOX MODEL: border example — separates the card from the page background */
+  border-radius: var(--radius);
+  padding: 1.75rem;              /* BOX MODEL: padding example #2 — inner spacing between card edge and content */
+  margin: 0 auto;                /* BOX MODEL: margin example — falls back to centering if a parent isn't flex */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Step 1: visible highlight once the card is "liked" */
+.card.is-liked {
+  border-color: var(--color-accent-liked);
+  box-shadow: 0 0 0 1px var(--color-accent-liked);
+}
+
+/*
+
+   Layout: CSS Grid for the avatar + name/title row
+
+*/
+.card__top {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;        /* BOX MODEL: margin example #2 — space between header row and bio text */
+}
+
+.card__name {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.card__role {
+  margin: 0.15rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.card__bio {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+/*
+
+   Layout: Flexbox for the row of links — wraps on narrow screens
+
+*/
+.card__links {
+  display: flex;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* Step 1: like button */
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.1rem;         /* BOX MODEL: padding example #3 — clickable area around the button label */
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.like-btn:hover {
+  border-color: var(--color-accent);
+}
+
+.like-btn.is-liked {
+  background: var(--color-accent-liked);
+  border-color: var(--color-accent-liked);
+  color: var(--color-bg);
+}
+
+/*
+
+   Responsive: stack the header row on mobile (~375px)
+   Above 480px the grid row stays side-by-side (desktop ~1200px too).
+
+*/
+@media (max-width: 480px) {
+  .card {
+    padding: 1.25rem;
+  }
+  .card__top {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+}
