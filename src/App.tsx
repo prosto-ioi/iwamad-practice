@@ -16,7 +16,7 @@ const profile = {
   name: 'Илья',
   role: 'Aspiring Web Developer',
   bio: 'Учусь на 3 курсе в КБТУ и прохожу этот курс, чтобы получить прочную базу в HTML, CSS и JavaScript. Люблю ходить в горы — это лучший способ переключиться после кода. Собираю портфолио проектов, которым буду гордиться к концу семестра.',
-  avatarUrl: '/photo-placeholder.svg',
+  avatarUrl: '/photo.jfif',
 };
 
 function App() {
