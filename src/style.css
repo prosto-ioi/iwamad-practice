@@ -6,9 +6,8 @@
   background: #0f172a;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --color-border: #334155;
-  --color-accent: #a78bfa;
-  --color-text: #e5e7eb;
+  /* named so they don't overwrite the Figma tokens from tokens.css */
+  --app-text: #e5e7eb;
   --color-muted: #94a3b8;
 }
 
@@ -49,19 +48,11 @@ a {
   padding: 2rem 1rem;
 }
 
-.card {
-  width: min(100%, 560px);
-  padding: 2rem;
-  border: 1px solid var(--color-border);
-  border-radius: 24px;
-  background: rgba(15, 23, 42, 0.88);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-}
+/* .card base styles live in src/styles/ui.css */
 
 .card--liked {
-  border-color: var(--color-accent);
-  box-shadow: 0 24px 70px rgba(167, 139, 250, 0.18);
+  border-color: var(--color-primary);
+  box-shadow: 0 24px 70px rgba(29, 78, 216, 0.25);
   transform: translateY(-2px);
 }
 
@@ -83,8 +74,8 @@ a {
 .avatar--fallback {
   display: grid;
   place-items: center;
-  background: #1e293b;
-  color: var(--color-accent);
+  background: var(--color-border);
+  color: var(--color-primary);
   font-family: 'Space Grotesk', sans-serif;
   font-size: 1.75rem;
   font-weight: 700;
@@ -103,12 +94,12 @@ a {
 
 .card__role {
   margin: 0.35rem 0 0;
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .card__bio {
   margin: 1.5rem 0;
-  color: #cbd5e1;
+  color: var(--color-text);
   line-height: 1.7;
 }
 
@@ -127,18 +118,11 @@ a {
   list-style: none;
 }
 
-.skill-badge {
-  padding: 0.45rem 0.75rem;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  color: #c4b5fd;
-  background: #111827;
-  font-size: 0.875rem;
-}
+/* .skill-badge removed: SkillBadge uses <Tag> (.tag in ui.css) */
 
 .empty-message {
   margin: 0;
-  color: var(--color-muted);
+  color: var(--color-text-muted);
 }
 
 .card__links {
@@ -169,7 +153,7 @@ a {
 
 .link-button:hover,
 .like-btn:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-primary);
   transform: translateY(-1px);
 }
 
@@ -177,15 +161,61 @@ a {
   width: 100%;
 }
 
-.like-btn--active {
-  border-color: var(--color-accent);
+/* Week 4: nav and likes counter */
+
+/* Header: mobile first (stacked), one row from 640px */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .site-header {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.nav-link:hover {
+  color: var(--app-text);
+}
+
+/* active page */
+.nav-link.active {
   color: #c4b5fd;
+  border-color: var(--color-primary);
   background: rgba(167, 139, 250, 0.1);
 }
 
-@media (max-width: 480px) {
-  .card {
-    padding: 1.25rem;
-    border-radius: 18px;
-  }
+.header-likes {
+  color: #c4b5fd;
+  font-weight: 500;
 }
+
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* old per-element focus rule removed: global :focus-visible in ui.css uses the token */
