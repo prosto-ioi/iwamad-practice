@@ -22,6 +22,7 @@ export function Header({ title }: HeaderProps) {
 
       <nav className="site-nav">
         {/* end on Home, otherwise "/" would count as active on every page */}
+        <NavLink to="/register">Register</NavLink>
         <NavLink to="/" end className={linkClass}>
           Home
         </NavLink>
