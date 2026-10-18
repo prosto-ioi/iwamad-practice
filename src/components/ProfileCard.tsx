@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { SkillBadge, type Skill } from './SkillBadge';
+import { LikeButton } from './LikeButton';
 
 type ProfileCardProps = {
   name: string;
@@ -20,10 +20,8 @@ export function ProfileCard({
   email,
   githubUrl,
 }: ProfileCardProps) {
-  const [liked, setLiked] = useState(false);
-
   return (
-    <article className={`card ${liked ? 'card--liked' : ''}`}>
+    <article className="card">
       <div className="card__top">
         {avatarUrl ? (
           <img className="avatar" src={avatarUrl} alt={`${name}'s profile`} />
@@ -73,15 +71,8 @@ export function ProfileCard({
         </li>
       </ul>
 
-      <button
-        className={`like-btn ${liked ? 'like-btn--active' : ''}`}
-        type="button"
-        aria-pressed={liked}
-        onClick={() => setLiked((current) => !current)}
-      >
-        <span aria-hidden="true">{liked ? '♥' : '♡'}</span>
-        {liked ? 'Liked' : 'Like'}
-      </button>
+      {/* likes state lives in Context now, not here */}
+      <LikeButton />
     </article>
   );
 }

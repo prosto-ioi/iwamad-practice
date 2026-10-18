@@ -189,3 +189,52 @@ a {
     border-radius: 18px;
   }
 }
+
+/* Week 4: nav and likes counter (append to the END of src/style.css) */
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.site-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+}
+
+/* active page */
+.nav-link.active {
+  color: #c4b5fd;
+  border-color: var(--color-accent);
+  background: rgba(167, 139, 250, 0.1);
+}
+
+.header-likes {
+  color: #c4b5fd;
+  font-weight: 500;
+}
+
+.nav-link:focus-visible,
+.link-button:focus-visible,
+.like-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
