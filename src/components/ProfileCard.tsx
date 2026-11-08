@@ -1,5 +1,6 @@
 import { SkillBadge, type Skill } from './SkillBadge';
 import { LikeButton } from './LikeButton';
+import Card from './ui/Card';
 
 type ProfileCardProps = {
   name: string;
@@ -21,7 +22,7 @@ export function ProfileCard({
   githubUrl,
 }: ProfileCardProps) {
   return (
-    <article className="card">
+    <Card>
       <div className="card__top">
         {avatarUrl ? (
           <img className="avatar" src={avatarUrl} alt={`${name}'s profile`} />
@@ -73,6 +74,6 @@ export function ProfileCard({
 
       {/* likes state lives in Context now, not here */}
       <LikeButton />
-    </article>
+    </Card>
   );
 }

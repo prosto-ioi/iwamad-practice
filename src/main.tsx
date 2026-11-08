@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router';
 import App from './App';
 import { LikesProvider } from './context/LikesContext';
 import './style.css';
+import './styles/tokens.css'
+import './style.css'
+import './styles/ui.css'
 
 // basename is needed because on GitHub Pages the site lives in /<repo>/, not at the root
 createRoot(document.getElementById('root')!).render(
