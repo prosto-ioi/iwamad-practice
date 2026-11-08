@@ -29,6 +29,9 @@ export function Header({ title }: HeaderProps) {
         <NavLink to="/skills" className={linkClass}>
           Skills
         </NavLink>
+        <NavLink to="/events" end className={linkClass}>
+        Events
+        </NavLink>
         <NavLink to="/contact" className={linkClass}>
           Contact
         </NavLink>
